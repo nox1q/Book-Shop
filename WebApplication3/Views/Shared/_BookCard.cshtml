@@ -1,6 +1,6 @@
 ﻿@model Book
 <div class="col-sm-4 col-lg-4 col-md-4">
-    <div class="thumbnail">
+    <div class="thumbnail_card">        
         <img src="@Model.ImageThumbnailUrl" alt="">
         <div class="caption">
             <h3 class="pull-right">@Model.Price.ToString("c")</h3>
@@ -16,7 +16,7 @@
                 <a class="btn btn-primary"
                    asp-controller="ShoppingCart"
                    asp-action="AddToShoppingCart"
-                   asp-route-pieId="@Model.BookId">Add to cart</a>
+                   asp-route-bookId="@Model.BookId">Add to cart</a>
             </p>
         </div>
     </div>

@@ -21,6 +21,7 @@ namespace WebApplication3.Controllers
             _categoryRepository = categoryRepository;
         }
 
+        /*
         public IActionResult List()
         {
 
@@ -29,7 +30,30 @@ namespace WebApplication3.Controllers
             booksListViewModel.CurrentCategory = "Horror Books";
             return View(booksListViewModel);
         }
+        */
+        public ViewResult List(string category)
+        {
+            IEnumerable<Book> books;
+            string currentCategory;
 
+            if (string.IsNullOrEmpty(category))
+            {
+                books = _bookRepository.AllBooks.OrderBy(p => p.BookId);
+                currentCategory = "All books";
+            }
+            else
+            {
+                books = _bookRepository.AllBooks.Where(p => p.Category.CategoryName == category)
+                    .OrderBy(p => p.BookId);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
+
+            return View(new BooksListViewModel
+            {
+                Books = books,
+                CurrentCategory = currentCategory
+            });
+        }
         public IActionResult Details(int id)
         {
             var book = _bookRepository.GetBookById(id);

@@ -5,11 +5,12 @@
 <h2>Books of the week</h2>
 <h4>Our weekly selection</h4>
 
-<div>
+    <div>
 
     @foreach (var book in Model.BooksOfTheWeek)
-    { 
+    {
         <partial name="_BookCard" model="book" />
     }
 
 </div>
+

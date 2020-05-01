@@ -20,7 +20,7 @@ namespace WebApplication3.Controllers
         }
 
         public ViewResult Index()
-        {
+        { 
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
 
