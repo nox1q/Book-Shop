@@ -27,7 +27,7 @@ using WebApplication3.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b1832dc46825a1ab4fc34d2918ea4774d339d2a7", @"/Views/Shared/Components/ShoppingCartSummary/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fe36a9aacc44ba666d63b0d1c2447e7c5904d89c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a1cfa96ec65498226bc554c58e3fc920aef6b49a", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_ShoppingCartSummary_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ShoppingCartViewModel>
     {
         #pragma warning disable 1998

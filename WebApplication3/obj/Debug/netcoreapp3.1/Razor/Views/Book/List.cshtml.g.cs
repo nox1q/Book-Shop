@@ -27,7 +27,7 @@ using WebApplication3.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e4976ae7860d5a430ce8d601feefc472957c9e32", @"/Views/Book/List.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fe36a9aacc44ba666d63b0d1c2447e7c5904d89c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a1cfa96ec65498226bc554c58e3fc920aef6b49a", @"/Views/_ViewImports.cshtml")]
     public class Views_Book_List : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BooksListViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_BookCard", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
