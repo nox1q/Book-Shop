@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebApplication3.Models
@@ -35,6 +36,7 @@ namespace WebApplication3.Models
         [Required(ErrorMessage = "Please enter your zip code")]
         [Display(Name = "Zip code")]
         [StringLength(10, MinimumLength = 4)]
+        [Remote(action: "IsZipCodeValid", controller: "Order")]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Please enter your city")]

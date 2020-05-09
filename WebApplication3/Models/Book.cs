@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,5 +20,13 @@ namespace WebApplication3.Models
         public bool inStock { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (ShortDescription.Length > 100)
+            {
+                yield return new ValidationResult("Short description cannot exceed length 100", new[] { nameof(ShortDescription) });
+            }
+        }
     }
 }

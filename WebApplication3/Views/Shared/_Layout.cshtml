@@ -6,8 +6,6 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <link href="~/Content/site.css" rel="stylesheet" />
 </head>
 <body>
@@ -31,7 +29,7 @@
                         @await Component.InvokeAsync("CategoryMenu")
                         @await Component.InvokeAsync("ShoppingCartSummary")
                         <partial name="_LoginPartial" />
-                    </ul>   
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -48,5 +46,11 @@
         </div>
     </div>
     @RenderSection("Scripts", required: false)
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.js"></script>
+
 </body>
 </html>

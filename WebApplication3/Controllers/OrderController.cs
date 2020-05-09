@@ -20,6 +20,18 @@ namespace WebApplication3.Controllers
             _shoppingCart = shoppingCart;
         }
 
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult IsZipCodeValid(string ZipCode)
+        {
+            List<string> ZipCodes = new List<string> { "050000", "050001", "050002", "050003", "050004", "050005", "050006", "050007", "050008" };
+            if (ZipCodes.Contains(ZipCode)==false)
+            {
+                return Json($"Your place is out of delivery({ZipCode})!");
+
+            }
+            return Json(true);
+        }
+
         public IActionResult Checkout()
         {
             return View();
