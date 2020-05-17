@@ -1,0 +1,65 @@
+﻿@model BookViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="title is-1">Edit</h1>
+
+<h4 class="subtitle is-4">Movie</h4>
+<hr />
+<div class="column is-two-fifths">
+    <div class="box">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="field">
+                <label asp-for="@Model.Book.Name" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.Name" class="input" />
+                    <span asp-validation-for="@Model.Book.Name" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="@Model.Book.ShortDescription" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.ShortDescription" class="input" />
+                    <span asp-validation-for="@Model.Book.ShortDescription" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="@Model.Book.LongDescription" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.LongDescription" class="input" />
+                    <span asp-validation-for="@Model.Book.LongDescription" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="@Model.Book.AllergyInformation" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.AllergyInformation" class="input" />
+                    <span asp-validation-for="@Model.Book.AllergyInformation" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="@Model.Book.Price" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.Price" class="input" />
+                    <span asp-validation-for="@Model.Book.Price" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+               
+                <select asp-for="@Model.Book.CategoryId"
+                        asp-items="@(new SelectList(Model.Categories,"CategoryId","CategoryName"))">
+                    <option>Please select one</option>
+                </select>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -8569,19 +8569,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\111\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
+      "projectUniqueName": "C:\\Users\\111\\Source\\Repos\\nox1q\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
       "projectName": "WebApplication3",
-      "projectPath": "C:\\Users\\HP\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\source\\repos\\WebApplication3\\WebApplication3\\obj\\",
+      "projectPath": "C:\\Users\\111\\Source\\Repos\\nox1q\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
+      "packagesPath": "C:\\Users\\111\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\111\\Source\\Repos\\nox1q\\WebApplication3\\WebApplication3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\111\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8646,7 +8646,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
