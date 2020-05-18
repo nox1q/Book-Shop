@@ -34,5 +34,17 @@ namespace WebApplication3.Models
         {
             return _appDbContext.Books.FirstOrDefault(p => p.BookId == bookId);
         }
+
+        public void Update(Book book) {
+            _appDbContext.Books.Update(book);
+            
+            _appDbContext.SaveChangesAsync();
+        }
+        public void Add(Book book)
+        {
+            _appDbContext.Books.Add(book);
+
+            _appDbContext.SaveChangesAsync();
+        }
     }
 }

@@ -338,3 +338,4 @@ C:\Users\111\Source\Repos\nox1q\WebApplication3\WebApplication3\obj\Debug\netcor
 C:\Users\111\Source\Repos\nox1q\WebApplication3\WebApplication3\obj\Debug\netcoreapp3.1\WebApplication3.genruntimeconfig.cache
 C:\Users\111\Source\Repos\nox1q\WebApplication3\WebApplication3\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\111\Source\Repos\nox1q\WebApplication3\WebApplication3\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Edit.cshtml.g.cs
+C:\Users\111\Source\Repos\nox1q\WebApplication3\WebApplication3\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Create.cshtml.g.cs

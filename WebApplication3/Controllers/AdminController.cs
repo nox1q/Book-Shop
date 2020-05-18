@@ -16,6 +16,7 @@ namespace WebApplication3.Controllers
         {
             _bookRepository = bookRepository;
             _categoryRepository = categoryRepository;
+
         }
 
         public async Task<IActionResult> Index()
@@ -24,6 +25,35 @@ namespace WebApplication3.Controllers
             return View(books);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var book = new Book();
+            var categories = _categoryRepository.AllCategories;
+            if (book == null)
+                return NotFound();
+            return View(new BookViewModel
+            {
+                Book = book,
+                Categories = categories
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(BookViewModel model)
+        {
+            var book = new Book();
+            book.Name = model.Book.Name;
+            book.ShortDescription = model.Book.ShortDescription;
+            book.LongDescription = model.Book.LongDescription;
+            book.Price = model.Book.Price;
+            book.Category = _categoryRepository.GetCategoryById(model.Book.CategoryId);
+            Console.WriteLine(book.Name);
+            _bookRepository.Add(book);
+
+            IEnumerable<Book> books = _bookRepository.AllBooks;
+            return View("Index", books);
+
+        }
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -53,6 +83,23 @@ namespace WebApplication3.Controllers
 
                };
                */
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(BookViewModel model)
+        {
+            var book = _bookRepository.GetBookById(model.Book.BookId);
+            
+            book.Name = model.Book.Name;
+            book.ShortDescription = model.Book.ShortDescription;
+            book.LongDescription = model.Book.LongDescription;
+            book.Price = model.Book.Price;
+            book.Category = _categoryRepository.GetCategoryById(model.Book.CategoryId);
+            Console.WriteLine(book.Name);
+            _bookRepository.Update(book);
+
+            IEnumerable<Book> books = _bookRepository.AllBooks;
+            return View("Index", books);
+          
         }
 
     }

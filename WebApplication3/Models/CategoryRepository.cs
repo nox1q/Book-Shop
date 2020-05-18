@@ -15,5 +15,10 @@ namespace WebApplication3.Models
         }
 
         public IEnumerable<Category> AllCategories => _appDbContext.Categories;
+
+        public Category GetCategoryById(int categoryId)
+        {
+            return _appDbContext.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
+        }
     }
 }

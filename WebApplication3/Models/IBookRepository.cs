@@ -10,5 +10,8 @@ namespace WebApplication3.Models
         IEnumerable<Book> AllBooks { get; }
         IEnumerable<Book> BooksOfTheWeek { get; }
         Book GetBookById(int bookId);
+        void Update(Book book);
+
+        void Add(Book book);
     }
 }

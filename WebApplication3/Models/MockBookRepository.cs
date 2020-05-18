@@ -22,5 +22,13 @@ namespace WebApplication3.Models
         {
             return AllBooks.FirstOrDefault(p => p.BookId == bookId);
         }
+        public void Update(Book book)
+        {
+            
+        }
+        public void Add(Book book)
+        {
+
+        }
     }
 }

@@ -1,16 +1,16 @@
 ﻿@model BookViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h1 class="title is-1">Edit</h1>
+<h1 class="title is-1">Create</h1>
 
 <h4 class="subtitle is-4">Movie</h4>
 <hr />
 <div class="column is-two-fifths">
     <div class="box">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="field">
                 <label asp-for="@Model.Book.Name" class="control-label"></label>
@@ -42,13 +42,12 @@
                 </div>
             </div>
             <div class="field">
-               
+
                 <select asp-for="@Model.Book.CategoryId"
                         asp-items="@(new SelectList(Model.Categories,"CategoryId","CategoryName"))">
-                    
                 </select>
             </div>
-            <button>Edit</button>
+            <button>Create</button>
 
         </form>
     </div>

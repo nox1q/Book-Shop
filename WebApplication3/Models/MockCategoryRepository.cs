@@ -14,5 +14,9 @@ namespace WebApplication3.Models
                 new Category{CategoryId=2, CategoryName="Humor books",Description="All-humor books"},
                 new Category{CategoryId=3, CategoryName="Drama books",Description="All-drama books"}
             };
+        public Category GetCategoryById(int categoryId)
+        {
+            return AllCategories.ToList()[categoryId];
+        }
     }
 }
