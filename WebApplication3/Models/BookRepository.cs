@@ -46,5 +46,11 @@ namespace WebApplication3.Models
 
             _appDbContext.SaveChangesAsync();
         }
+        public void Delete(Book book)
+        {
+            _appDbContext.Books.Remove(book);
+
+            _appDbContext.SaveChangesAsync();
+        }
     }
 }

@@ -13,5 +13,7 @@ namespace WebApplication3.Models
         void Update(Book book);
 
         void Add(Book book);
+
+        void Delete(Book book);
     }
 }

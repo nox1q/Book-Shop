@@ -51,6 +51,10 @@
             <button>Edit</button>
 
         </form>
+        <form asp-action="Delete" asp-route-id="@Model.Book.BookId">
+            <input type="hidden" asp-for="@Model.Book.BookId" />
+            <button>Delete</button>
+        </form>
     </div>
 </div>
 

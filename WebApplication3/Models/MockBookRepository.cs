@@ -30,5 +30,9 @@ namespace WebApplication3.Models
         {
 
         }
+        public void Delete(Book book)
+        {
+
+        }
     }
 }

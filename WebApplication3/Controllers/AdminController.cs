@@ -43,6 +43,7 @@ namespace WebApplication3.Controllers
         {
             var book = new Book();
             book.Name = model.Book.Name;
+            book.ImageUrl = model.Book.ImageUrl;
             book.ShortDescription = model.Book.ShortDescription;
             book.LongDescription = model.Book.LongDescription;
             book.Price = model.Book.Price;
@@ -99,7 +100,20 @@ namespace WebApplication3.Controllers
 
             IEnumerable<Book> books = _bookRepository.AllBooks;
             return View("Index", books);
-          
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id )
+        {
+            var book = _bookRepository.GetBookById(id);
+
+           
+            _bookRepository.Delete(book);
+
+            IEnumerable<Book> books = _bookRepository.AllBooks;
+
+            return View("Index", books);
+
         }
 
     }
