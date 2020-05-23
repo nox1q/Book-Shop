@@ -20,6 +20,13 @@
                 </div>
             </div>
             <div class="field">
+                <label asp-for="@Model.Book.ImageUrl" class="control-label"></label>
+                <div class="control">
+                    <input asp-for="@Model.Book.ImageUrl" class="input" />
+                    <span asp-validation-for="@Model.Book.ImageUrl" class="has-text-danger"></span>
+                </div>
+            </div>
+            <div class="field">
                 <label asp-for="@Model.Book.ShortDescription" class="control-label"></label>
                 <div class="control">
                     <input asp-for="@Model.Book.ShortDescription" class="input" />
@@ -42,10 +49,9 @@
                 </div>
             </div>
             <div class="field">
-               
+
                 <select asp-for="@Model.Book.CategoryId"
                         asp-items="@(new SelectList(Model.Categories,"CategoryId","CategoryName"))">
-                    
                 </select>
             </div>
             <button>Edit</button>

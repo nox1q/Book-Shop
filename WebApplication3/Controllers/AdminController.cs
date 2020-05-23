@@ -5,38 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Models;
 using WebApplication3.Viewmodels;
+using Microsoft.AspNetCore.Identity;
 namespace WebApplication3.Controllers
 {
     public class AdminController : Controller
     {
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
+        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
             _bookRepository = bookRepository;
             _categoryRepository = categoryRepository;
-
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
-
-        public async Task<IActionResult> Index()
+        // Admin: admin@gmail.com Password: Admin!123
+        public ViewResult Index()
         {
-            var books = _bookRepository.AllBooks;
-            return View(books);
+            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com")) {
+                var books = _bookRepository.AllBooks;
+                return View(books);
+            } else
+                return View("Denied");
+        }
+        public ViewResult Denied()
+        {
+            return View("Denied");
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            var book = new Book();
-            var categories = _categoryRepository.AllCategories;
-            if (book == null)
-                return NotFound();
-            return View(new BookViewModel
+            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com"))
             {
-                Book = book,
-                Categories = categories
-            });
+                var book = new Book();
+                var categories = _categoryRepository.AllCategories;
+                if (book == null)
+                    return NotFound();
+                return View(new BookViewModel
+                {
+                    Book = book,
+                    Categories = categories
+                });
+            }
+            else
+                return View("Denied");
+            
         }
         [HttpPost]
         public async Task<IActionResult> Create(BookViewModel model)
@@ -44,6 +61,7 @@ namespace WebApplication3.Controllers
             var book = new Book();
             book.Name = model.Book.Name;
             book.ImageUrl = model.Book.ImageUrl;
+            book.ImageThumbnailUrl = model.Book.ImageUrl;
             book.ShortDescription = model.Book.ShortDescription;
             book.LongDescription = model.Book.LongDescription;
             book.Price = model.Book.Price;
@@ -51,39 +69,46 @@ namespace WebApplication3.Controllers
             Console.WriteLine(book.Name);
             _bookRepository.Add(book);
 
-            IEnumerable<Book> books = _bookRepository.AllBooks;
+            var books = _bookRepository.AllBooks;
+            //return RedirectToAction("Index");
             return View("Index", books);
 
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var book = _bookRepository.GetBookById(id);
-            var categories = _categoryRepository.AllCategories;
-            if (book == null)
-                return NotFound();
-            return View(new BookViewModel
+            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com"))
             {
-                Book = book,
-                Categories = categories
-            }) ;
+                var book = _bookRepository.GetBookById(id);
+                var categories = _categoryRepository.AllCategories;
+                if (book == null)
+                    return NotFound();
+                return View(new BookViewModel
+                {
+                    Book = book,
+                    Categories = categories
+                });
 
-            /*  BookViewModel bookView = new BookViewModel { 
-                   BookId = book.BookId,
-                   Name = book.Name,
-                   ShortDescription = book.ShortDescription,
-                   LongDescription = book.LongDescription,
-                   AllergyInformation = book.AllergyInformation,
-                   Price = book.Price,
-                   ImageUrl = book.ImageUrl,
-                   ImageThumbnailUrl = book.ImageThumbnailUrl,
-                   isBookOfTheWeek = book.isBookOfTheWeek,
-                   inStock = book.inStock,
-                   CategoryId = book.CategoryId,
-                   Category = book.Category
+                /*  BookViewModel bookView = new BookViewModel { 
+                       BookId = book.BookId,
+                       Name = book.Name,
+                       ShortDescription = book.ShortDescription,
+                       LongDescription = book.LongDescription,
+                       AllergyInformation = book.AllergyInformation,
+                       Price = book.Price,
+                       ImageUrl = book.ImageUrl,
+                       ImageThumbnailUrl = book.ImageThumbnailUrl,
+                       isBookOfTheWeek = book.isBookOfTheWeek,
+                       inStock = book.inStock,
+                       CategoryId = book.CategoryId,
+                       Category = book.Category
 
-               };
-               */
+                   };
+                   */
+            }
+            else
+                return View("Denied");
+           
         }
         [HttpPost]
         public async Task<IActionResult> Edit(BookViewModel model)
@@ -91,6 +116,8 @@ namespace WebApplication3.Controllers
             var book = _bookRepository.GetBookById(model.Book.BookId);
             
             book.Name = model.Book.Name;
+            book.ImageUrl = model.Book.ImageUrl;
+            book.ImageThumbnailUrl = model.Book.ImageUrl;
             book.ShortDescription = model.Book.ShortDescription;
             book.LongDescription = model.Book.LongDescription;
             book.Price = model.Book.Price;
@@ -98,7 +125,8 @@ namespace WebApplication3.Controllers
             Console.WriteLine(book.Name);
             _bookRepository.Update(book);
 
-            IEnumerable<Book> books = _bookRepository.AllBooks;
+            var books = _bookRepository.AllBooks;
+            //return RedirectToAction("Index");
             return View("Index", books);
 
         }
@@ -112,6 +140,7 @@ namespace WebApplication3.Controllers
 
             IEnumerable<Book> books = _bookRepository.AllBooks;
 
+            //return RedirectToAction("Index");
             return View("Index", books);
 
         }
