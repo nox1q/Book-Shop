@@ -21,17 +21,20 @@ namespace WebApplication3.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _logger = logger;
             _emailSender = emailSender;
         }
@@ -74,8 +77,24 @@ namespace WebApplication3.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                bool x = await _roleManager.RoleExistsAsync("ROLE_ADMIN");
+                if (!x)
+                {
+                    var role = new IdentityRole();
+                    role.Name = "ROLE_ADMIN";
+                    await _roleManager.CreateAsync(role);
+                }
+                bool y = await _roleManager.RoleExistsAsync("ROLE_USER");
+                if (!y)
+                {
+                    var role = new IdentityRole();
+                    role.Name = "ROLE_USER";
+                    await _roleManager.CreateAsync(role);
+                }
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.AddToRoleAsync(user, "ROLE_USER");
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

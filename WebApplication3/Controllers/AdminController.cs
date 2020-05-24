@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Models;
 using WebApplication3.Viewmodels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
 namespace WebApplication3.Controllers
 {
     public class AdminController : Controller
@@ -22,14 +24,15 @@ namespace WebApplication3.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        // Admin: admin@gmail.com Password: Admin!123
+        // Admin: kek@mail.ru Password: Asdf!123
+        [Authorize(Roles ="ROLE_ADMIN")]
         public ViewResult Index()
         {
-            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com")) {
+            //if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com")) {
                 var books = _bookRepository.AllBooks;
                 return View(books);
-            } else
-                return View("Denied");
+            //} else
+             //   return View("Denied");
         }
         public ViewResult Denied()
         {
@@ -39,8 +42,7 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com"))
-            {
+            //if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com")){
                 var book = new Book();
                 var categories = _categoryRepository.AllCategories;
                 if (book == null)
@@ -50,9 +52,9 @@ namespace WebApplication3.Controllers
                     Book = book,
                     Categories = categories
                 });
-            }
-            else
-                return View("Denied");
+            //}
+            //else
+             //   return View("Denied");
             
         }
         [HttpPost]
@@ -77,8 +79,8 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com"))
-            {
+            //if (_signInManager.IsSignedIn(User) && User.Identity.Name.Equals("admin@gmail.com")) { 
+
                 var book = _bookRepository.GetBookById(id);
                 var categories = _categoryRepository.AllCategories;
                 if (book == null)
@@ -105,9 +107,9 @@ namespace WebApplication3.Controllers
 
                    };
                    */
-            }
-            else
-                return View("Denied");
+           // }
+            //else
+             //   return View("Denied");
            
         }
         [HttpPost]
